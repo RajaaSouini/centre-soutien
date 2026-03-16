@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="mb-4" style="color:#1A3C5E;">Gestion des Inscriptions</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 style="color:#1A3C5E;">Gestion des Inscriptions</h2>
+</div>
 
 <table class="table table-bordered table-hover bg-white shadow-sm">
     <thead style="background-color:#1A3C5E; color:white;">
         <tr>
             <th>#</th>
-            <th>Élève</th>
+            <th>Nom & Prénom</th>
+            <th>Téléphone</th>
             <th>Classe</th>
+            <th>Niveau</th>
             <th>Date</th>
             <th>Statut</th>
             <th>Prix</th>
@@ -20,7 +24,9 @@
         <tr>
             <td>{{ $inscription->id }}</td>
             <td>{{ $inscription->eleve->nom }} {{ $inscription->eleve->prenom }}</td>
-            <td>{{ $inscription->eleve->classe->nom }}</td>
+            <td>{{ $inscription->eleve->telephone }}</td>
+            <td>{{ $inscription->eleve->classe->nom ?? '-' }}</td>
+            <td>{{ $inscription->eleve->classe->niveau->nom ?? '-' }}</td>
             <td>{{ $inscription->date }}</td>
             <td>
                 @if($inscription->statut == 'En attente')
@@ -52,7 +58,7 @@
             </td>
         </tr>
         @empty
-            <tr><td colspan="7" class="text-center">Aucune inscription</td></tr>
+            <tr><td colspan="9" class="text-center">Aucune inscription</td></tr>
         @endforelse
     </tbody>
 </table>

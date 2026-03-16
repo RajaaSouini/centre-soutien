@@ -29,7 +29,7 @@
                 <li class="nav-item"><a class="nav-link" href="/admin/cours">Cours</a></li>
                 <li class="nav-item"><a class="nav-link" href="/admin/salles">Salles</a></li>
                 <li class="nav-item"><a class="nav-link" href="/admin/plannings">Planning</a></li>
-                <li class="nav-item"><a class="nav-link" href="/admin/eleves">Élèves</a></li>
+                
                 <li class="nav-item">
                     <form action="/admin/logout" method="POST" class="d-inline">
                         @csrf

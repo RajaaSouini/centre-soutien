@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Models\Planning;
+use App\Models\Salle;
  
 class PlanningController extends Controller
 {
-    // Liste des plannings
+    
     public function index()
     {
-        $plannings = Planning::with('salle')->get();
-        return response()->json($plannings);
+        $plannings = Planning::with('salle', 'cours')->get();
+        return view('admin.plannings.index', compact('plannings'));
     }
  
-    // Créer un planning
+    public function create()
+    {
+        $salles = Salle::all();
+        return view('admin.plannings.create', compact('salles'));
+    }
+ 
     public function store(Request $request)
     {
         $request->validate([
@@ -24,34 +30,39 @@ class PlanningController extends Controller
             'salle_id'    => 'required|exists:salles,id',
         ]);
  
-        $planning = Planning::create($request->all());
+        Planning::create($request->all());
  
-        return response()->json([
-            'message'  => 'Planning créé avec succès',
-            'planning' => $planning,
-        ], 201);
+        // Mettre à jour le statut de la salle à Occupée
+        Salle::where('id', $request->salle_id)->update(['statut' => 'Occupee']);
+ 
+        return redirect('/admin/plannings')->with('success', 'Planning ajouté avec succès !');
     }
  
-    // Modifier un planning
+    public function edit($id)
+    {
+        $planning = Planning::findOrFail($id);
+        $salles = Salle::all();
+        return view('admin.plannings.edit', compact('planning', 'salles'));
+    }
+ 
     public function update(Request $request, $id)
     {
         $planning = Planning::findOrFail($id);
         $planning->update($request->all());
  
-        return response()->json([
-            'message'  => 'Planning modifié avec succès',
-            'planning' => $planning,
-        ]);
+        return redirect('/admin/plannings')->with('success', 'Planning modifié avec succès !');
     }
  
-    // Supprimer un planning
     public function destroy($id)
     {
         $planning = Planning::findOrFail($id);
+ 
+        // Remettre la salle disponible
+        Salle::where('id', $planning->salle_id)->update(['statut' => 'Disponible']);
+ 
         $planning->delete();
  
-        return response()->json([
-            'message' => 'Planning supprimé'
-        ]);
+        return redirect('/admin/plannings')->with('success', 'Planning supprimé !');
     }
 }
+ 
