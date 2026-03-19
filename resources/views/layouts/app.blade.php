@@ -440,6 +440,8 @@
 <body>
 
     <!-- SIDEBAR -->
+    <!-- Ajouter avant </aside> -->
+
     <aside class="sidebar">
         <div class="sidebar-logo">
             RS<span>.</span>success
@@ -480,6 +482,15 @@
                 Planning
             </a>
         </nav>
+        <div style="padding: 0 16px 16px;">
+        <a href="http://localhost:3000" target="_blank" style="
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 16px; background: #F0FFC3; color: #685AFF;
+            border-radius: 14px; text-decoration: none;
+            font-weight: 700; font-size: 15px;">
+            🌐 Voir le site
+        </a>
+    </div>
 
         <div class="sidebar-footer">
             <form action="/admin/logout" method="POST">
