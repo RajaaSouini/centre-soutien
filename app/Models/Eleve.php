@@ -12,11 +12,13 @@ class Eleve extends Model
     protected $table = 'eleves';
  
     protected $fillable = [
-        'nom',
-        'prenom',
-        'telephone',
-        'classe_scolaire_id',
-    ];
+    'nom',
+    'prenom',
+    'telephone',
+    'email',
+    'password',
+    'classe_scolaire_id',
+];
  
     // Un élève appartient à une classe
     public function classe()

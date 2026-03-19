@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\EleveAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\EleveController;
@@ -78,3 +78,11 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/eleves/{id}', [EleveController::class, 'destroy']);
 
 });
+
+
+
+// Routes élève
+Route::post('/eleve/register', [EleveAuthController::class, 'register']);
+Route::post('/eleve/login', [EleveAuthController::class, 'login']);
+Route::post('/eleve/logout', [EleveAuthController::class, 'logout']);
+Route::get('/eleve/me', [EleveAuthController::class, 'me']);

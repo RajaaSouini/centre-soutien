@@ -10,8 +10,13 @@ class ClasseScolaireController extends Controller
     // Liste des classes
     public function index()
     {
-        $classes = ClasseScolaire::with('niveau')->get();
+         $classes = ClasseScolaire::with('niveau')->get();
+    
+    if (request()->expectsJson()) {
         return response()->json($classes);
+    }
+    
+    return view('admin.classes.index', compact('classes'));
     }
  
     // Créer une classe

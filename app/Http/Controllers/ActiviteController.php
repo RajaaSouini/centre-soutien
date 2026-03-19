@@ -10,8 +10,13 @@ class ActiviteController extends Controller
     // Liste des activités
     public function index()
     {
-        $activites = Activite::all();
-        return view('admin.activites.index', compact('activites'));
+       $activites = Activite::all();
+    
+    if (request()->expectsJson() || request()->is('api/*')) {
+        return response()->json($activites);
+    }
+    
+    return view('admin.activites.index', compact('activites'));
     }
 
     // Formulaire ajout

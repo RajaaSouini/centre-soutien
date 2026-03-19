@@ -11,9 +11,13 @@ class CoursController extends Controller
 {
 
     public function index()
-    {
-        $cours = Cours::with('classe.niveau', 'planning.salle')->get();
-        return view('admin.cours.index', compact('cours'));
+    {$cours = Cours::with('classe.niveau', 'planning.salle')->get();
+    
+    if (request()->expectsJson()) {
+        return response()->json($cours);
+    }
+    
+    return view('admin.cours.index', compact('cours'));
     }
  
     public function create()

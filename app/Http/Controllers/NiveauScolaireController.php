@@ -10,8 +10,13 @@ class NiveauScolaireController extends Controller
     // Liste des niveaux
     public function index()
     {
-        $niveaux = NiveauScolaire::with('classes')->get();
+       $niveaux = NiveauScolaire::with('classes')->get();
+    
+    if (request()->expectsJson()) {
         return response()->json($niveaux);
+    }
+    
+    return view('admin.niveaux.index', compact('niveaux'));
     }
  
     // Créer un niveau
