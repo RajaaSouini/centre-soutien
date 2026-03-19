@@ -454,10 +454,7 @@
                 Inscriptions
             </a>
 
-            <a href="/admin/eleves" class="sidebar-link {{ request()->is('admin/eleves*') ? 'active' : '' }}">
-                <div class="icon">👨‍🎓</div>
-                Élèves
-            </a>
+            
 
             <div class="sidebar-section">Contenu</div>
 
