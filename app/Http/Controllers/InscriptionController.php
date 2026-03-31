@@ -25,31 +25,39 @@ class InscriptionController extends Controller
 
     // Soumettre inscription
     public function store(Request $request)
-    {
-        $request->validate([
-            'nom'                => 'required|string',
-            'prenom'             => 'required|string',
-            'telephone'          => 'required|string',
-            'classe_scolaire_id' => 'required|exists:classes_scolaires,id',
-        ]);
+{
+    $request->validate([
+        'nom'                => 'required|string',
+        'prenom'             => 'required|string',
+        'telephone'          => 'required|string',
+        'classe_scolaire_id' => 'required|exists:classes_scolaires,id',
+    ]);
 
-        $eleve = \App\Models\Eleve::create([
-            'nom'                => $request->nom,
-            'prenom'             => $request->prenom,
-            'telephone'          => $request->telephone,
-            'classe_scolaire_id' => $request->classe_scolaire_id,
-        ]);
+    $eleve = \App\Models\Eleve::create([
+        'nom'                => $request->nom,
+        'prenom'             => $request->prenom,
+        'telephone'          => $request->telephone,
+        'classe_scolaire_id' => $request->classe_scolaire_id,
+    ]);
 
-        Inscription::create([
-            'date'     => now()->toDateString(),
-            'statut'   => 'En attente',
-            'eleve_id' => $eleve->id,
-        ]);
+    $inscription = Inscription::create([
+        'date'     => now()->toDateString(),
+        'statut'   => 'En attente',
+        'eleve_id' => $eleve->id,
+    ]);
 
-        return redirect('/inscriptions/create')
-               ->with('success', 'Votre demande d\'inscription a été envoyée avec succès !');
+    // Retourner JSON ou redirection selon la requête
+    if ($request->expectsJson()) {
+        return response()->json([
+            'message'     => 'Inscription soumise avec succès',
+            'inscription' => $inscription,
+            'eleve'       => $eleve,
+        ], 201);
     }
 
+    return redirect('/inscriptions/create')
+           ->with('success', 'Votre demande d\'inscription a été envoyée avec succès !');
+}
     // Confirmer
     public function confirmer(Request $request, $id)
     {

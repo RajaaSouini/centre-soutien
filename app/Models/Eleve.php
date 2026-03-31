@@ -10,6 +10,7 @@ class Eleve extends Model
     use HasFactory;
  
     protected $table = 'eleves';
+    protected $hidden = ['password'];
  
     protected $fillable = [
     'nom',
