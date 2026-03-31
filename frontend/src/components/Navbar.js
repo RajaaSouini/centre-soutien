@@ -23,9 +23,13 @@ export default function Navbar() {
       boxShadow: '0 2px 20px rgba(104,90,255,0.07)',
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
     }}>
-      <a href="/" style={{ fontFamily: "'Fredoka One', cursive", fontSize: '28px', color: '#685AFF', textDecoration: 'none' }}>
-        RS<span style={{ color: '#FF5B5B' }}>.</span>success
-      </a>
+      <a href="/">
+  <img 
+    src={process.env.PUBLIC_URL + '/logo.png'} 
+    alt="RS.success" 
+    style={{ height: '150px', objectFit: 'contain' }} 
+  />
+</a>
 
       <ul style={{ display: 'flex', gap: '32px', listStyle: 'none', alignItems: 'center', margin: 0, padding: 0 }}>
         <li><a href="/" style={{ textDecoration: 'none', color: '#2D2D2D', fontWeight: '600', fontSize: '15px' }}>Accueil</a></li>

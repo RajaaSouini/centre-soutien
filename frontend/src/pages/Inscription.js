@@ -79,7 +79,7 @@ export default function Inscription() {
       </nav>
 
       {/* CONTENU */}
-      <div style={{ paddingTop: '100px', paddingBottom: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ paddingTop: '220px', paddingBottom: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
 
         {/* Cercles décoratifs */}
         <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, #F0FFC3 0%, transparent 70%)', zIndex: 0 }} />

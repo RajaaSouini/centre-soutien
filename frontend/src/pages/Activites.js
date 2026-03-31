@@ -25,7 +25,7 @@ export default function Activites() {
       <Navbar />
 
       {/* HEADER */}
-      <div style={{ paddingTop: '100px', paddingBottom: '60px', textAlign: 'center', position: 'relative', overflow: 'hidden', background: '#FAFAFE' }}>
+      <div style={{ paddingTop: '220px', paddingBottom: '60px', textAlign: 'center', position: 'relative', overflow: 'hidden', background: '#FAFAFE' }}>
         <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '350px', height: '350px', borderRadius: '50%', background: 'radial-gradient(circle, #F0FFC3 0%, transparent 70%)' }} />
         <div style={{ position: 'absolute', bottom: '-50px', left: '-50px', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, #9CCFFF 0%, transparent 70%)' }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
