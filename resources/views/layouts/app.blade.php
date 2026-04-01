@@ -481,6 +481,10 @@
                 <div class="icon">📅</div>
                 Planning
             </a>
+            <a href="/admin/paiements" class="sidebar-link {{ request()->is('admin/paiements*') ? 'active' : '' }}">
+                <div class="icon">💰</div>
+                Paiements
+            </a>
         </nav>
         <div style="padding: 0 16px 16px;">
         <a href="http://localhost:3000" target="_blank" style="

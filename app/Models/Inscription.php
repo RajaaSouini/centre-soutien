@@ -23,4 +23,9 @@ class Inscription extends Model
     {
         return $this->belongsTo(Eleve::class, 'eleve_id');
     }
+    // Une inscription a plusieurs paiements
+public function paiements()
+{
+    return $this->hasMany(Paiement::class, 'inscription_id');
+}
 }

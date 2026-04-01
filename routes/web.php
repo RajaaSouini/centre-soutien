@@ -10,6 +10,7 @@ use App\Http\Controllers\CoursController;
 use App\Http\Controllers\NiveauScolaireController;
 use App\Http\Controllers\ClasseScolaireController;
 use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\PaiementController;
 
 // ============================================
 // ROUTES PUBLIQUES
@@ -76,6 +77,14 @@ Route::middleware('admin')->group(function () {
     // Élèves
     Route::get('/admin/eleves', [EleveController::class, 'index']);
     Route::delete('/admin/eleves/{id}', [EleveController::class, 'destroy']);
+    
+
+// Routes paiements (dans le groupe middleware admin)
+Route::get('/admin/paiements', [PaiementController::class, 'index']);
+Route::get('/admin/paiements/create', [PaiementController::class, 'create']);
+Route::post('/admin/paiements', [PaiementController::class, 'store']);
+Route::put('/admin/paiements/{id}/valider', [PaiementController::class, 'valider']);
+Route::delete('/admin/paiements/{id}', [PaiementController::class, 'destroy']);
 
 });
 
